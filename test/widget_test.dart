@@ -8,7 +8,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'package:petfinder_app/main.dart';
+//import 'package:petfinder_app/main.dart';
 import 'package:petfinder_app/petfinder_app.dart';
 
 void main() {

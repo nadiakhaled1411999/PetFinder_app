@@ -1,3 +1,4 @@
+//! This file is used to configure the debugging settings for the Flutter application.(3)
 {
   "version": "0.2.0",
   "configurations": [
