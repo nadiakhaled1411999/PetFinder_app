@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:petfinder_app/core/constants/app_assets.dart';
 import 'package:petfinder_app/core/helpers/spacing.dart';
 import 'package:petfinder_app/core/theming/app_text_styles.dart';
 import 'package:petfinder_app/features/home/presentation/widgets/bottom_nav_bar.dart';
@@ -31,67 +32,62 @@ class _HomeScreenState extends State<HomeScreen> {
 
             // Search Bar
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w),
+              padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: const SearchBarWidget(),
             ),
 
             verticalSpace(20),
 
             // Categories
+
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(left: 16.w),
+                  child: Text(
+                    'Categories',
+                    style: AppTextStyles.font20BlackBold,
+                  ),
+                ),
+                verticalSpace(14),
+                CategoriesList(
+                  selectedCategory: selectedCategory,
+                  onCategorySelected: (category) {
+                    setState(() {
+                      selectedCategory = category;
+                    });
+                  },
+                ),
+              ],
+            ),
+
+            verticalSpace(24),
+
+            // Pets List
             Expanded(
-              child: Column(
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.only(left: 16.w),
-                        child: Text(
-                          'Categories',
-                          style: AppTextStyles.font24BlackBold,
-                        ),
-                      ),
-                      verticalSpace(14),
-                      CategoriesList(
-                        selectedCategory: selectedCategory,
-                        onCategorySelected: (category) {
-                          setState(() {
-                            selectedCategory = category;
-                          });
-                        },
-                      ),
-                    ],
-                  ),
+              child: ListView.builder(
+                padding: EdgeInsets.only(
+                  left: 20.w,
+                  right: 20.w,
+                  bottom: 20.h,
+                ),
 
-                  verticalSpace(24),
+                itemCount: _getDummyPets().length, // dummy data
 
-                  // Pets List
-                  Expanded(
-                    child: ListView.separated(
-                      padding: EdgeInsets.only(
-                        left: 20.w,
-                        right: 20.w,
-                        bottom: 20.h,
-                      ),
-
-                      itemCount: 4, // dummy data
-                      separatorBuilder: (context, index) => verticalSpace(16),
-                      itemBuilder: (context, index) {
-                        return PetCard(
-                          name: _getDummyPets()[index]['name']!,
-                          gender: _getDummyPets()[index]['gender']!,
-                          age: _getDummyPets()[index]['age']!,
-                          distance: _getDummyPets()[index]['distance']!,
-                          imagePath: _getDummyPets()[index]['image']!,
-                          isFavorite: false,
-                          onFavoritePressed: () {},
-                        );
-                      },
-                    ),
-                  ),
-                ],
+                itemBuilder: (context, index) {
+                  return PetCard(
+                    name: _getDummyPets()[index]['name']!,
+                    gender: _getDummyPets()[index]['gender']!,
+                    age: _getDummyPets()[index]['age']!,
+                    distance: _getDummyPets()[index]['distance']!,
+                    imagePath: _getDummyPets()[index]['imagePath']!,
+                    isFavorite: false,
+                    onFavoritePressed: () {},
+                  );
+                },
               ),
-            )
+            ),
           ],
         ),
       ),
@@ -108,6 +104,7 @@ class _HomeScreenState extends State<HomeScreen> {
         'age': '5 Months Old',
         'distance': '1.6 km away',
         'image': 'cat',
+        'imagePath': AppAssets.cat,
       },
       {
         'name': 'Tom',
@@ -115,6 +112,7 @@ class _HomeScreenState extends State<HomeScreen> {
         'age': '1 year Old',
         'distance': '2.7 km away',
         'image': 'dog2',
+        'imagePath': AppAssets.dog2,
       },
       {
         'name': 'Oliver',
@@ -122,6 +120,7 @@ class _HomeScreenState extends State<HomeScreen> {
         'age': '3 Months Old',
         'distance': '2 km away',
         'image': 'sunny',
+        'imagePath': AppAssets.sunny,
       },
       {
         'name': 'Shelly',
@@ -129,6 +128,7 @@ class _HomeScreenState extends State<HomeScreen> {
         'age': '1.5 year Old',
         'distance': '3 km away',
         'image': 'dog',
+        'imagePath': AppAssets.dog,
       },
     ];
   }

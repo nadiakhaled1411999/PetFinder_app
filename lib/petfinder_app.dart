@@ -12,7 +12,7 @@ class  PetFinderApp extends StatelessWidget {
   Widget build(BuildContext context) {
        final PetFinderAppRouter router = PetFinderAppRouter();
     return  ScreenUtilInit(
-      designSize: const Size(360, 690),
+      designSize: const Size(375, 956),
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (_, child) {

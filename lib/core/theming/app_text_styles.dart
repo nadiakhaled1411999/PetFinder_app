@@ -50,8 +50,8 @@ static TextStyle font14White2Semibold = TextStyle(
     fontWeight: FontWeightHelper.semiBold,
     color: AppColors.white2,
   );
-static TextStyle font14Grey3Regular = TextStyle(
-    fontSize: 14.sp,
+static TextStyle font12Grey3Regular = TextStyle(
+    fontSize: 12.sp,
     fontWeight: FontWeightHelper.regular,
     color: AppColors.grey3,
   );

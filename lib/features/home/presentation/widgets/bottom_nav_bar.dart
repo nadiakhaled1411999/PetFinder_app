@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:petfinder_app/core/routing/routes.dart';
 import 'package:petfinder_app/core/theming/app_colors.dart';
 
 class BottomNavBar extends StatelessWidget {
@@ -18,8 +19,8 @@ class BottomNavBar extends StatelessWidget {
         color: AppColors.white,
         boxShadow: [
           BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 10,
+            color: Colors.black.withOpacity(0.15),
+            blurRadius: 4,
             offset: const Offset(0, -4),
           ),
         ],
@@ -39,11 +40,17 @@ class BottomNavBar extends StatelessWidget {
   Widget _buildNavItem(IconData icon, int index) {
     final isSelected = currentIndex == index;
 
-    return  Icon(
-        icon,
-        color: isSelected ? AppColors.primaryColor : AppColors.grey2,
-        size: 28.sp,
-
-    );
+    return GestureDetector(
+        onTap: () {
+          if (index == 1) {
+            // Favorites
+         //   Navigator.pushNamed(context, Routes.favoritesScreen);
+          }
+        },
+        child: Icon(
+          icon,
+          color: isSelected ? AppColors.primaryColor : AppColors.grey2,
+          size: 26.sp,
+        ));
   }
 }

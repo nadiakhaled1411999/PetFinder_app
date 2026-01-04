@@ -20,7 +20,7 @@ class CategoriesList extends StatelessWidget {
     return Padding(
       padding:  EdgeInsets.symmetric(horizontal: 16.w),
       child: SizedBox(
-        height: 36.h,
+        height:48.h,
         child: ListView.separated(
           scrollDirection: Axis.horizontal,
           itemCount: categories.length,
@@ -32,10 +32,10 @@ class CategoriesList extends StatelessWidget {
             return GestureDetector(
               onTap: () => onCategorySelected(category),
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 24.w),
+                padding: EdgeInsets.symmetric(horizontal:19.w),
                 decoration: BoxDecoration(
                   color: isSelected ? AppColors.primaryColor : AppColors.white2,
-                  borderRadius: BorderRadius.circular(20.r),
+                  borderRadius: BorderRadius.circular(25.r),
                 ),
                 child: Center(
                   child: Text(

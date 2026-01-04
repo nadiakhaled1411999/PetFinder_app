@@ -19,17 +19,18 @@ class OnboardingScreen extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 16.w),
           child: Column(
             children: [
+              verticalSpace(90),
               Image.asset(
                 AppAssets.dogAndCat,
                 height: 305.h,
                 fit: BoxFit.contain,
               ),
 
-              verticalSpace(10),
+              verticalSpace(90),
 
               Text(
                 'Find Your Best Companion With Us',
-                style: AppTextStyles.font32BlackBold,
+                style: AppTextStyles.font24BlackBold,
                 textAlign: TextAlign.center,
               ),
 
@@ -41,7 +42,7 @@ class OnboardingScreen extends StatelessWidget {
                 textAlign: TextAlign.center,
               ),
 
-              verticalSpace(50),
+              verticalSpace(90),
 
               GetStartedButton(
                 onTap: () {

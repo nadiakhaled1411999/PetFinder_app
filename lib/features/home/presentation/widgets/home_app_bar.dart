@@ -16,7 +16,7 @@ class HomeAppBar extends StatelessWidget {
         children: [
           Text(
             'Find Your Forever Pet',
-            style: AppTextStyles.font24BlackBold,
+            style: AppTextStyles.font20BlackBold,
           ),
           horizontalSpace(16),
           Icon(

@@ -18,10 +18,10 @@ class GetStartedButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         width: 297.w,
-        height: 56.h,
+        height: 65.h,
         decoration: BoxDecoration(
           color: AppColors.primaryColor,
-          borderRadius: BorderRadius.circular(28.r),
+          borderRadius: BorderRadius.circular(30.r),
           boxShadow: [
             BoxShadow(
               color: AppColors.primaryColor.withOpacity(0.3),
