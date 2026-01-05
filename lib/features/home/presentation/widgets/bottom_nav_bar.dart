@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:petfinder_app/core/routing/routes.dart';
 import 'package:petfinder_app/core/theming/app_colors.dart';
 
 class BottomNavBar extends StatelessWidget {
   final int currentIndex;
+ final Function(int)? onTap;
 
   const BottomNavBar({
-    Key? key,
+    super.key,
     required this.currentIndex,
-  }) : super(key: key);
+    this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -40,13 +41,12 @@ class BottomNavBar extends StatelessWidget {
   Widget _buildNavItem(IconData icon, int index) {
     final isSelected = currentIndex == index;
 
-    return GestureDetector(
-        onTap: () {
-          if (index == 1) {
-            // Favorites
-         //   Navigator.pushNamed(context, Routes.favoritesScreen);
-          }
-        },
+      return GestureDetector(
+      onTap: () {
+        if (onTap != null) {
+          onTap!(index);
+        }
+      },
         child: Icon(
           icon,
           color: isSelected ? AppColors.primaryColor : AppColors.grey2,

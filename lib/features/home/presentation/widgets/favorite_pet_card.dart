@@ -54,7 +54,7 @@ class FavoritePetCard extends StatelessWidget {
                         topRight: Radius.circular(20.r),
                       ),
                       child: Image.asset(
-                   imagePath,
+                        imagePath,
                         fit: BoxFit.cover,
                         width: double.infinity,
                       ),
@@ -69,7 +69,7 @@ class FavoritePetCard extends StatelessWidget {
                       child: Container(
                         width: 32.w,
                         height: 32.h,
-                        decoration: BoxDecoration(
+                        decoration: const BoxDecoration(
                           color: AppColors.primaryColor,
                           shape: BoxShape.circle,
                         ),

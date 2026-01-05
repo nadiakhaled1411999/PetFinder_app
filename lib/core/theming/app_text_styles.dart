@@ -30,6 +30,12 @@ static TextStyle font16Grey2Regular = TextStyle(
     fontWeight: FontWeightHelper.regular,
     color: AppColors.grey2,
   );
+
+static TextStyle font14Grey2Regular = TextStyle(
+    fontSize: 14.sp,
+    fontWeight: FontWeightHelper.regular,
+    color: AppColors.grey2,
+  );
   static TextStyle font18WhiteMedium = TextStyle(
     fontSize: 18.sp,
     fontWeight: FontWeightHelper.medium,
@@ -39,6 +45,11 @@ static TextStyle font18WhiteSemiBold = TextStyle(
     fontSize: 18.sp,
     fontWeight: FontWeightHelper.semiBold,
     color: AppColors.white,
+  );
+static TextStyle font16BlackBold = TextStyle(
+    fontSize: 16.sp,
+    fontWeight: FontWeightHelper.bold,
+    color: AppColors.black,
   );
    static TextStyle font18BlackBold = TextStyle(
     fontSize: 18.sp,

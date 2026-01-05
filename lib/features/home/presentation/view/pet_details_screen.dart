@@ -16,7 +16,7 @@ class PetDetailsScreen extends StatefulWidget {
   final bool isFavorite;
 
   const PetDetailsScreen({
-    Key? key,
+    super.key,
     required this.name,
     required this.gender,
     required this.age,
@@ -26,7 +26,7 @@ class PetDetailsScreen extends StatefulWidget {
     required this.about,
     required this.imagePath,
     this.isFavorite = false,
-  }) : super(key: key);
+  });
 
   @override
   State<PetDetailsScreen> createState() => _PetDetailsScreenState();
@@ -70,7 +70,7 @@ class _PetDetailsScreenState extends State<PetDetailsScreen> {
                               children: [
                                 Text(
                                   widget.name,
-                                  style: AppTextStyles.font32BlackBold,
+                                  style: AppTextStyles.font20BlackBold,
                                 ),
                                 verticalSpace(8),
                                 Row(
@@ -92,7 +92,7 @@ class _PetDetailsScreenState extends State<PetDetailsScreen> {
                           ),
                           Text(
                             widget.price,
-                            style: AppTextStyles.font32BlackBold.copyWith(
+                            style: AppTextStyles.font20BlackBold.copyWith(
                               color: AppColors.primaryColor,
                             ),
                           ),
@@ -132,7 +132,7 @@ class _PetDetailsScreenState extends State<PetDetailsScreen> {
                         children: [
                           Text(
                             'About:',
-                            style: AppTextStyles.font24BlackBold,
+                            style: AppTextStyles.font20BlackBold,
                           ),
                           verticalSpace(12),
                           Text(
@@ -175,7 +175,7 @@ class _PetDetailsScreenState extends State<PetDetailsScreen> {
           Center(
             child: Image.asset(
               widget.imagePath,
-              height: 350.h,
+              height: 320.h,
               fit: BoxFit.contain,
             ),
           ),
@@ -227,12 +227,12 @@ class _PetDetailsScreenState extends State<PetDetailsScreen> {
         children: [
           Text(
             title,
-            style: AppTextStyles.font18BlackBold,
+            style: AppTextStyles.font16BlackBold,
           ),
           verticalSpace(4),
           Text(
             value,
-            style: AppTextStyles.font16Grey2Regular,
+            style: AppTextStyles.font14Grey2Regular,
           ),
         ],
       ),
@@ -240,24 +240,14 @@ class _PetDetailsScreenState extends State<PetDetailsScreen> {
   }
 
   Widget _buildAdoptButton() {
-    return Container(
-      padding: EdgeInsets.all(20.w),
-      decoration: BoxDecoration(
-        color: AppColors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black.withOpacity(0.05),
-            blurRadius: 10,
-            offset: const Offset(0, -4),
-          ),
-        ],
-      ),
+    return Padding(
+      padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
       child: GestureDetector(
         onTap: () {
           // Handle Adopt action
         },
         child: Container(
-          height: 56.h,
+          height: 66.h,
           decoration: BoxDecoration(
             color: AppColors.primaryColor,
             borderRadius: BorderRadius.circular(28.r),

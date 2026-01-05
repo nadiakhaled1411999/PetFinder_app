@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:petfinder_app/core/helpers/spacing.dart';
+import 'package:petfinder_app/core/routing/routes.dart';
 import 'package:petfinder_app/core/theming/app_colors.dart';
 import 'package:petfinder_app/core/theming/app_text_styles.dart';
 import 'package:petfinder_app/features/home/presentation/widgets/bottom_nav_bar.dart';
 import 'package:petfinder_app/features/home/presentation/widgets/categories_list.dart';
 import 'package:petfinder_app/features/home/presentation/widgets/favorite_pet_card.dart';
+
 class FavoritesScreen extends StatefulWidget {
-  const FavoritesScreen({Key? key}) : super(key: key);
+  const FavoritesScreen({super.key});
 
   @override
   State<FavoritesScreen> createState() => _FavoritesScreenState();
@@ -26,7 +28,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
           children: [
             // Title
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
               child: Text(
                 'Your Favorite Pets',
                 style: AppTextStyles.font32BlackBold,
@@ -35,7 +37,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
 
             // Categories
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 20.w),
+              padding: EdgeInsets.symmetric(horizontal: 16.w),
               child: CategoriesList(
                 selectedCategory: selectedCategory,
                 onCategorySelected: (category) {
@@ -51,7 +53,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
             // Favorites Grid
             Expanded(
               child: GridView.builder(
-                padding: EdgeInsets.symmetric(horizontal: 20.w),
+                padding: EdgeInsets.symmetric(horizontal: 16.w),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   crossAxisSpacing: 16.w,
@@ -72,7 +74,18 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: const BottomNavBar(currentIndex: 1),
+      bottomNavigationBar: BottomNavBar(
+        currentIndex: 1,
+        onTap: (index) {
+          if (index == 0) {
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              Routes.homeScreen,
+              (route) => false,
+            );
+          }
+        },
+      ),
     );
   }
 
@@ -82,6 +95,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
         'name': 'Joli',
         'distance': '1.6 km away',
         'image': 'cat',
+
       },
       {
         'name': 'Oliver',

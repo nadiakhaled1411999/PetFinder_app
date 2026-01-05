@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:petfinder_app/core/constants/app_assets.dart';
 import 'package:petfinder_app/core/helpers/spacing.dart';
+import 'package:petfinder_app/core/routing/routes.dart';
 import 'package:petfinder_app/core/theming/app_text_styles.dart';
 import 'package:petfinder_app/features/home/presentation/widgets/bottom_nav_bar.dart';
 import 'package:petfinder_app/features/home/presentation/widgets/categories_list.dart';
@@ -91,7 +92,18 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: const BottomNavBar(currentIndex: 0),
+bottomNavigationBar: BottomNavBar(
+  currentIndex: 0,
+  onTap: (index) {
+    if (index == 1) {
+      Navigator.pushNamedAndRemoveUntil(
+        context,
+        Routes.favoritesScreen,
+        (route) => false, // امسح كل الـ Stack
+      );
+    }
+  },
+),
     );
   }
 

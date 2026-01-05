@@ -4,6 +4,7 @@ import 'package:petfinder_app/core/helpers/spacing.dart';
 import 'package:petfinder_app/core/routing/routes.dart';
 import 'package:petfinder_app/core/theming/app_colors.dart';
 import 'package:petfinder_app/core/theming/app_text_styles.dart';
+
 class PetCard extends StatelessWidget {
   final String name;
   final String gender;
@@ -39,7 +40,7 @@ class PetCard extends StatelessWidget {
             'distance': distance,
             'price': '\$95',
             'about':
-                'This is a playful and loyal pet who loves being around people.',
+                "Tom is a playful and loyal Golden Retriever who loves being around people.He’s 1 years old, full of energy, and always ready for a game of fetch.Tom enjoys morning walks, belly rubs, and taking long naps after playtime.He’s gentle with kids, gets along well with other pets, and makes the perfect family companion.",
             'imagePath': imagePath,
             'isFavorite': isFavorite,
           },
@@ -79,9 +80,7 @@ class PetCard extends StatelessWidget {
                 ),
               ),
             ),
-
             horizontalSpace(16),
-
             Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -96,9 +95,7 @@ class PetCard extends StatelessWidget {
                         child: GestureDetector(
                           onTap: onFavoritePressed,
                           child: Icon(
-                            isFavorite
-                                ? Icons.favorite
-                                : Icons.favorite_border,
+                            isFavorite ? Icons.favorite : Icons.favorite_border,
                             color: isFavorite
                                 ? Colors.red
                                 : AppColors.primaryColor,
@@ -109,19 +106,15 @@ class PetCard extends StatelessWidget {
                     ],
                   ),
                   verticalSpace(4),
-                  Text(gender,
-                      style: AppTextStyles.font12Grey3Regular),
+                  Text(gender, style: AppTextStyles.font12Grey3Regular),
                   verticalSpace(4),
-                  Text(age,
-                      style: AppTextStyles.font12Grey3Regular),
+                  Text(age, style: AppTextStyles.font12Grey3Regular),
                   verticalSpace(8),
                   Row(
                     children: [
-                      Icon(Icons.location_on,
-                          color: Colors.red, size: 16.sp),
+                      Icon(Icons.location_on, color: Colors.red, size: 16.sp),
                       horizontalSpace(4),
-                      Text(distance,
-                          style: AppTextStyles.font12Grey3Regular),
+                      Text(distance, style: AppTextStyles.font12Grey3Regular),
                     ],
                   ),
                 ],
