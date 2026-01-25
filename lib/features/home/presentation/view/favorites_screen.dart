@@ -60,7 +60,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                   mainAxisSpacing: 16.h,
                   childAspectRatio: 0.75,
                 ),
-                itemCount: 3, // dummy data
+                itemCount: 3,
                 itemBuilder: (context, index) {
                   return FavoritePetCard(
                     name: _getDummyFavorites()[index]['name']!,

@@ -4,6 +4,8 @@ import 'package:petfinder_app/core/constants/app_assets.dart';
 import 'package:petfinder_app/core/helpers/spacing.dart';
 import 'package:petfinder_app/core/routing/routes.dart';
 import 'package:petfinder_app/core/theming/app_text_styles.dart';
+import 'package:petfinder_app/features/home/presentation/view/pet_details_screen.dart';
+import 'package:petfinder_app/features/home/presentation/view/pet_details_screen.dart';
 import 'package:petfinder_app/features/home/presentation/widgets/bottom_nav_bar.dart';
 import 'package:petfinder_app/features/home/presentation/widgets/categories_list.dart';
 import 'package:petfinder_app/features/home/presentation/widgets/home_app_bar.dart';
@@ -74,7 +76,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   bottom: 20.h,
                 ),
 
-                itemCount: _getDummyPets().length, // dummy data
+                itemCount: _getDummyPets().length,
 
                 itemBuilder: (context, index) {
                   return PetCard(
@@ -92,18 +94,18 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-bottomNavigationBar: BottomNavBar(
-  currentIndex: 0,
-  onTap: (index) {
-    if (index == 1) {
-      Navigator.pushNamedAndRemoveUntil(
-        context,
-        Routes.favoritesScreen,
-        (route) => false, // امسح كل الـ Stack
-      );
-    }
-  },
-),
+      bottomNavigationBar: BottomNavBar(
+        currentIndex: 0,
+        onTap: (index) {
+          if (index == 1) {
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              Routes.petDetailsScreen,
+              (route) => false,
+            );
+          }
+        },
+      ),
     );
   }
 

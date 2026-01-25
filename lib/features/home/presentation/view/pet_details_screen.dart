@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:petfinder_app/core/helpers/spacing.dart';
+import 'package:petfinder_app/core/routing/routes.dart';
 import 'package:petfinder_app/core/theming/app_colors.dart';
 import 'package:petfinder_app/core/theming/app_text_styles.dart';
 
@@ -244,7 +245,11 @@ class _PetDetailsScreenState extends State<PetDetailsScreen> {
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
       child: GestureDetector(
         onTap: () {
-          // Handle Adopt action
+          Navigator.pushNamedAndRemoveUntil(
+              context,
+              Routes.favoritesScreen,
+              (route) => false,
+            );
         },
         child: Container(
           height: 66.h,
