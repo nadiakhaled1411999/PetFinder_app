@@ -4,29 +4,14 @@ import 'package:petfinder_app/core/helpers/spacing.dart';
 import 'package:petfinder_app/core/routing/routes.dart';
 import 'package:petfinder_app/core/theming/app_colors.dart';
 import 'package:petfinder_app/core/theming/app_text_styles.dart';
+import 'package:petfinder_app/features/home/domain/models/pet.dart';
 
 class PetDetailsScreen extends StatefulWidget {
-  final String name;
-  final String gender;
-  final String age;
-  final String weight;
-  final String distance;
-  final String price;
-  final String about;
-  final String imagePath;
-  final bool isFavorite;
+  final Pet pet;
 
   const PetDetailsScreen({
     super.key,
-    required this.name,
-    required this.gender,
-    required this.age,
-    required this.weight,
-    required this.distance,
-    required this.price,
-    required this.about,
-    required this.imagePath,
-    this.isFavorite = false,
+    required this.pet,
   });
 
   @override
@@ -39,7 +24,7 @@ class _PetDetailsScreenState extends State<PetDetailsScreen> {
   @override
   void initState() {
     super.initState();
-    isFavorite = widget.isFavorite;
+    isFavorite = widget.pet.isFavorite;
   }
 
   @override
@@ -54,12 +39,8 @@ class _PetDetailsScreenState extends State<PetDetailsScreen> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Pet Image with Back & Favorite Buttons
                     _buildImageSection(),
-
                     verticalSpace(24),
-
-                    // Pet Name, Distance & Price
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20.w),
                       child: Row(
@@ -70,7 +51,7 @@ class _PetDetailsScreenState extends State<PetDetailsScreen> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  widget.name,
+                                  widget.pet.name,
                                   style: AppTextStyles.font20BlackBold,
                                 ),
                                 verticalSpace(8),
@@ -83,8 +64,9 @@ class _PetDetailsScreenState extends State<PetDetailsScreen> {
                                     ),
                                     horizontalSpace(4),
                                     Text(
-                                      widget.distance,
-                                      style: AppTextStyles.font16Grey2Regular,
+                                      widget.pet.distance,
+                                      style:
+                                          AppTextStyles.font16Grey2Regular,
                                     ),
                                   ],
                                 ),
@@ -92,7 +74,7 @@ class _PetDetailsScreenState extends State<PetDetailsScreen> {
                             ),
                           ),
                           Text(
-                            widget.price,
+                            widget.pet.price,
                             style: AppTextStyles.font20BlackBold.copyWith(
                               color: AppColors.primaryColor,
                             ),
@@ -100,32 +82,28 @@ class _PetDetailsScreenState extends State<PetDetailsScreen> {
                         ],
                       ),
                     ),
-
                     verticalSpace(24),
-
-                    // Gender, Age, Weight Info Cards
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20.w),
                       child: Row(
                         children: [
                           Expanded(
-                            child: _buildInfoCard('Gender', widget.gender),
+                            child:
+                                _buildInfoCard('Gender', widget.pet.gender),
                           ),
                           horizontalSpace(12),
                           Expanded(
-                            child: _buildInfoCard('Age', widget.age),
+                            child: _buildInfoCard('Age', widget.pet.age),
                           ),
                           horizontalSpace(12),
                           Expanded(
-                            child: _buildInfoCard('Weight', widget.weight),
+                            child:
+                                _buildInfoCard('Weight', widget.pet.weight),
                           ),
                         ],
                       ),
                     ),
-
                     verticalSpace(32),
-
-                    // About Section
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 20.w),
                       child: Column(
@@ -137,7 +115,7 @@ class _PetDetailsScreenState extends State<PetDetailsScreen> {
                           ),
                           verticalSpace(12),
                           Text(
-                            widget.about,
+                            widget.pet.about,
                             style: AppTextStyles.font16Grey2Regular.copyWith(
                               height: 1.5,
                             ),
@@ -145,7 +123,6 @@ class _PetDetailsScreenState extends State<PetDetailsScreen> {
                         ],
                       ),
                     ),
-
                     verticalSpace(100),
                   ],
                 ),
@@ -154,7 +131,6 @@ class _PetDetailsScreenState extends State<PetDetailsScreen> {
           ],
         ),
       ),
-      // Adopt Me Button
       bottomNavigationBar: _buildAdoptButton(),
     );
   }
@@ -172,16 +148,13 @@ class _PetDetailsScreenState extends State<PetDetailsScreen> {
       ),
       child: Stack(
         children: [
-          // Pet Image
           Center(
             child: Image.asset(
-              widget.imagePath,
+              widget.pet.imagePath,
               height: 320.h,
               fit: BoxFit.contain,
             ),
           ),
-
-          // Back Button
           Positioned(
             top: 16.h,
             left: 20.w,
@@ -194,8 +167,6 @@ class _PetDetailsScreenState extends State<PetDetailsScreen> {
               ),
             ),
           ),
-
-          // Favorite Button
           Positioned(
             top: 16.h,
             right: 20.w,
@@ -203,6 +174,7 @@ class _PetDetailsScreenState extends State<PetDetailsScreen> {
               onTap: () {
                 setState(() {
                   isFavorite = !isFavorite;
+                  widget.pet.isFavorite = isFavorite;
                 });
               },
               child: Icon(
@@ -246,10 +218,10 @@ class _PetDetailsScreenState extends State<PetDetailsScreen> {
       child: GestureDetector(
         onTap: () {
           Navigator.pushNamedAndRemoveUntil(
-              context,
-              Routes.favoritesScreen,
-              (route) => false,
-            );
+            context,
+            Routes.favoritesScreen,
+            (route) => false,
+          );
         },
         child: Container(
           height: 66.h,
