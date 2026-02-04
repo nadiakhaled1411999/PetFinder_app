@@ -30,6 +30,8 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       body: SafeArea(
         child: Column(
+
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const HomeAppBar(),
             verticalSpace(20),
@@ -39,12 +41,13 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             verticalSpace(20),
             Padding(
-              padding: EdgeInsets.only(left: 0.w),
+              padding:  EdgeInsets.only(left: 16.0.w),
               child: Text(
-                'Categories',
-                style: AppTextStyles.font20BlackBold,
-              ),
+                  'Categories',
+                  style: AppTextStyles.font20BlackBold,
+                ),
             ),
+
             verticalSpace(14),
             CategoriesList(
               selectedCategory: selectedCategory,
@@ -66,14 +69,18 @@ class _HomeScreenState extends State<HomeScreen> {
                   final pet = pets[index];
                   return PetCard(
                     pet: pet,
+                    onTap: () async {
+                      await Navigator.pushNamed(
+                        context,
+                        Routes.petDetailsScreen,
+                        arguments: pet,
+                      );
+
+                      setState(() {});
+                    },
                     onFavoritePressed: () {
                       setState(() {
                         pet.isFavorite = !pet.isFavorite;
-                        Navigator.pushNamed(
-                          context,
-                          Routes.petDetailsScreen,
-                          arguments: petsDummyData[index],
-                        );
                       });
                     },
                   );
@@ -83,17 +90,18 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavBar(
-        currentIndex: 0,
-        onTap: (index) {
-          if (index == 1) {
-            Navigator.pushNamed(
-              context,
-              Routes.favoritesScreen,
-            );
-          }
-        },
-      ),
+//   bottomNavigationBar: BottomNavBar(
+//   currentIndex: 0,
+//   onTap: (index) {
+//     if (index == 1) {
+//       Navigator.pushNamedAndRemoveUntil(
+//         context,
+//         Routes.favoritesScreen,
+//         (route) => false,
+//       );
+//     }
+//   },
+// ),
     );
   }
 }

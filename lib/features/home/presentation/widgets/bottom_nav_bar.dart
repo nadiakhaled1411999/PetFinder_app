@@ -4,12 +4,12 @@ import 'package:petfinder_app/core/theming/app_colors.dart';
 
 class BottomNavBar extends StatelessWidget {
   final int currentIndex;
- final Function(int)? onTap;
+  final ValueChanged<int> onTap;
 
   const BottomNavBar({
     super.key,
     required this.currentIndex,
-    this.onTap,
+    required this.onTap,
   });
 
   @override
@@ -41,16 +41,13 @@ class BottomNavBar extends StatelessWidget {
   Widget _buildNavItem(IconData icon, int index) {
     final isSelected = currentIndex == index;
 
-      return GestureDetector(
-      onTap: () {
-        if (onTap != null) {
-          onTap!(index);
-        }
-      },
-        child: Icon(
-          icon,
-          color: isSelected ? AppColors.primaryColor : AppColors.grey2,
-          size: 26.sp,
-        ));
+    return GestureDetector(
+      onTap: () => onTap(index),
+      child: Icon(
+        icon,
+        color: isSelected ? AppColors.primaryColor : AppColors.grey2,
+        size: 26.sp,
+      ),
+    );
   }
 }

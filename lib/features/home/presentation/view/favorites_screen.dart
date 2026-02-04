@@ -5,10 +5,8 @@ import 'package:petfinder_app/core/theming/app_colors.dart';
 import 'package:petfinder_app/core/theming/app_text_styles.dart';
 import 'package:petfinder_app/features/home/data/models/pets_dummy_data.dart';
 import 'package:petfinder_app/features/home/presentation/view/pet_details_screen.dart';
-import 'package:petfinder_app/features/home/presentation/widgets/bottom_nav_bar.dart';
 import 'package:petfinder_app/features/home/presentation/widgets/categories_list.dart';
 import 'package:petfinder_app/features/home/presentation/widgets/favorite_pet_card.dart';
-
 
 class FavoritesScreen extends StatefulWidget {
   const FavoritesScreen({super.key});
@@ -22,15 +20,11 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final favorites = petsDummyData
-        .where((pet) => pet.isFavorite)
-        .toList();
+    final favorites = petsDummyData.where((pet) => pet.isFavorite).toList();
 
     final filteredFavorites = selectedCategory == 'All'
         ? favorites
-        : favorites
-            .where((pet) => pet.category == selectedCategory)
-            .toList();
+        : favorites.where((pet) => pet.category == selectedCategory).toList();
 
     return Scaffold(
       backgroundColor: AppColors.white,
@@ -39,16 +33,13 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 16.h),
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 25.h),
               child: Text(
                 'Your Favorite Pets',
-                style: AppTextStyles.font32BlackBold,
+                style: AppTextStyles.font20BlackBold,
               ),
             ),
-
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16.w),
-              child: CategoriesList(
+            CategoriesList(
                 selectedCategory: selectedCategory,
                 onCategorySelected: (category) {
                   setState(() {
@@ -56,10 +47,8 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                   });
                 },
               ),
-            ),
 
-            verticalSpace(24),
-
+            verticalSpace(25),
             Expanded(
               child: GridView.builder(
                 padding: EdgeInsets.symmetric(horizontal: 16.w),
@@ -95,14 +84,18 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
           ],
         ),
       ),
-      bottomNavigationBar: BottomNavBar(
-        currentIndex: 1,
-        onTap: (index) {
-          if (index == 0) {
-            Navigator.pop(context);
-          }
-        },
-      ),
+      // bottomNavigationBar: BottomNavBar(
+      //   currentIndex: 1,
+      //   onTap: (index) {
+      //     if (index == 0) {
+      //       Navigator.pushNamedAndRemoveUntil(
+      //         context,
+      //         Routes.homeScreen,
+      //         (route) => false,
+      //       );
+      //     }
+      //   },
+      // ),
     );
   }
 }

@@ -65,8 +65,7 @@ class _PetDetailsScreenState extends State<PetDetailsScreen> {
                                     horizontalSpace(4),
                                     Text(
                                       widget.pet.distance,
-                                      style:
-                                          AppTextStyles.font16Grey2Regular,
+                                      style: AppTextStyles.font16Grey2Regular,
                                     ),
                                   ],
                                 ),
@@ -88,8 +87,7 @@ class _PetDetailsScreenState extends State<PetDetailsScreen> {
                       child: Row(
                         children: [
                           Expanded(
-                            child:
-                                _buildInfoCard('Gender', widget.pet.gender),
+                            child: _buildInfoCard('Gender', widget.pet.gender),
                           ),
                           horizontalSpace(12),
                           Expanded(
@@ -97,8 +95,7 @@ class _PetDetailsScreenState extends State<PetDetailsScreen> {
                           ),
                           horizontalSpace(12),
                           Expanded(
-                            child:
-                                _buildInfoCard('Weight', widget.pet.weight),
+                            child: _buildInfoCard('Weight', widget.pet.weight),
                           ),
                         ],
                       ),
@@ -159,7 +156,9 @@ class _PetDetailsScreenState extends State<PetDetailsScreen> {
             top: 16.h,
             left: 20.w,
             child: GestureDetector(
-              onTap: () => Navigator.pop(context),
+              onTap: () {
+                Navigator.pop(context);
+              },
               child: Icon(
                 Icons.arrow_back_ios_new,
                 color: AppColors.primaryColor,
@@ -173,12 +172,11 @@ class _PetDetailsScreenState extends State<PetDetailsScreen> {
             child: GestureDetector(
               onTap: () {
                 setState(() {
-                  isFavorite = !isFavorite;
-                  widget.pet.isFavorite = isFavorite;
+                  widget.pet.isFavorite = !widget.pet.isFavorite;
                 });
               },
               child: Icon(
-                isFavorite ? Icons.favorite : Icons.favorite_border,
+                widget.pet.isFavorite ? Icons.favorite : Icons.favorite_border,
                 color: AppColors.primaryColor,
                 size: 24.sp,
               ),
@@ -217,11 +215,9 @@ class _PetDetailsScreenState extends State<PetDetailsScreen> {
       padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 16.h),
       child: GestureDetector(
         onTap: () {
-          Navigator.pushNamedAndRemoveUntil(
-            context,
-            Routes.favoritesScreen,
-            (route) => false,
-          );
+          //         ScaffoldMessenger.of(context).showSnackBar(
+          //   const SnackBar(content: Text('Adoption flow coming soon')),
+          // );
         },
         child: Container(
           height: 66.h,

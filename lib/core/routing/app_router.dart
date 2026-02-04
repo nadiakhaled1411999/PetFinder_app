@@ -3,6 +3,7 @@ import 'package:petfinder_app/core/routing/routes.dart';
 import 'package:petfinder_app/features/home/domain/models/pet.dart';
 import 'package:petfinder_app/features/home/presentation/view/favorites_screen.dart';
 import 'package:petfinder_app/features/home/presentation/view/home_screen.dart';
+import 'package:petfinder_app/features/home/presentation/view/main_layout.dart';
 import 'package:petfinder_app/features/home/presentation/view/pet_details_screen.dart';
 import 'package:petfinder_app/features/onboarding/presentation/view/onboarding_screen.dart';
 import 'package:petfinder_app/features/splash/presentation/view/splash_screen.dart';
@@ -17,6 +18,10 @@ class PetFinderAppRouter {
       case Routes.onBoardingScreen:
         return MaterialPageRoute(
             builder: (context) => const OnboardingScreen());
+                case Routes.mainLayout:
+        return MaterialPageRoute(
+          builder: (_) => const MainLayout(),
+        );
       case Routes.homeScreen:
         return MaterialPageRoute(builder: (context) => const HomeScreen());
       case Routes.petDetailsScreen:

@@ -6,28 +6,25 @@ import 'package:petfinder_app/core/theming/app_colors.dart';
 import 'package:petfinder_app/core/theming/app_text_styles.dart';
 import 'package:petfinder_app/features/home/domain/models/pet.dart';
 
- class PetCard extends StatelessWidget {
+class PetCard extends StatelessWidget {
   final Pet pet;
   final VoidCallback onFavoritePressed;
+  final VoidCallback onTap;
 
   const PetCard({
     super.key,
     required this.pet,
     required this.onFavoritePressed,
+    required this.onTap,
   });
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.pushNamed(
-          context,
-          Routes.petDetailsScreen,
-          arguments: pet,
-        );
-      },
+      onTap: onTap,
       child: Container(
-        margin: EdgeInsets.symmetric(vertical: 4.h),
+        margin: EdgeInsets.symmetric(vertical: 5.h),
+        padding: EdgeInsets.all(10.w),
         height: 160.h,
         decoration: BoxDecoration(
           color: AppColors.white,
@@ -42,18 +39,22 @@ import 'package:petfinder_app/features/home/domain/models/pet.dart';
         ),
         child: Row(
           children: [
-            Padding(
-              padding: EdgeInsets.only(left: 10.w),
-              child: ClipRRect(
-                borderRadius: BorderRadius.circular(16.r),
-                child: Image.asset(
-                  pet.imagePath,
-                  width: 100.w,
-                  height: 140.h,
-                  fit: BoxFit.fill,
+             Container(
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(16.r),
+                  color: AppColors.white2,
+                ),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(16.r),
+                  child: Image.asset(
+                    pet.imagePath,
+                    width: 100.w,
+                    height: 140.h,
+                    fit: BoxFit.fill,
+                  ),
                 ),
               ),
-            ),
+
             horizontalSpace(16),
             Expanded(
               child: Column(
@@ -63,8 +64,7 @@ import 'package:petfinder_app/features/home/domain/models/pet.dart';
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text(pet.name,
-                          style: AppTextStyles.font18BlackBold),
+                      Text(pet.name, style: AppTextStyles.font18BlackBold),
                       GestureDetector(
                         onTap: onFavoritePressed,
                         child: Icon(
@@ -79,16 +79,13 @@ import 'package:petfinder_app/features/home/domain/models/pet.dart';
                     ],
                   ),
                   verticalSpace(4),
-                  Text(pet.gender,
-                      style: AppTextStyles.font12Grey3Regular),
+                  Text(pet.gender, style: AppTextStyles.font12Grey3Regular),
                   verticalSpace(4),
-                  Text(pet.age,
-                      style: AppTextStyles.font12Grey3Regular),
+                  Text(pet.age, style: AppTextStyles.font12Grey3Regular),
                   verticalSpace(8),
                   Row(
                     children: [
-                      Icon(Icons.location_on,
-                          color: Colors.red, size: 16.sp),
+                      Icon(Icons.location_on, color: Colors.red, size: 16.sp),
                       horizontalSpace(4),
                       Text(pet.distance,
                           style: AppTextStyles.font12Grey3Regular),

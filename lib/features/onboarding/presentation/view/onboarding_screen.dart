@@ -46,10 +46,10 @@ class OnboardingScreen extends StatelessWidget {
 
               GetStartedButton(
                 onTap: () {
-                  Navigator.pushReplacementNamed(
-                    context,
-                    Routes.homeScreen,
-                  );
+                   Navigator.pushReplacementNamed(
+    context,
+    Routes.mainLayout,
+  );
                 },
               ),
 
